@@ -3,3 +3,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .nav-bar-elements {
+        @apply h-[72px] w-[300px] rounded-lg
+        hover:bg-secondary-50
+        hover:text-secondary-300 hover:stroke-secondary-300
+        flex items-center
+        hover:rounded-xl
+        transition-all duration-300 ease-linear
+        cursor-pointer;
+    }
+
+    .nav-bar-elements-logout {
+        @apply h-[72px] w-[300px] rounded-lg 
+        hover:bg-danger-50 hover:text-danger-300 hover:stroke-danger-300
+        flex items-center
+        hover:rounded-xl
+        transition-all duration-300 ease-linear
+        cursor-pointer;
+    }
+}
