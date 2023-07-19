@@ -2,7 +2,7 @@ import React from 'react'
 
 const Suppliers = () => {
     return (
-        <div className=' text-secondary-75 stroke-secondary-75 nav-bar-elements'>
+        <div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className=' w-6 h-6 fill-none stroke-2 inline-block mr-4 ml-[74px]'>
                 <circle cx="3.40426" cy="3.40426" r="3.40426" transform="matrix(-1 0 0 1 15.6172 4.99988)" />
                 <path d="M6.25537 16.8593C6.25537 16.1271 6.71567 15.4739 7.40524 15.2277V15.2277C10.5141 14.1174 13.9115 14.1174 17.0204 15.2277V15.2277C17.71 

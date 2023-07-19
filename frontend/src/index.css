@@ -7,12 +7,20 @@
 @layer components {
     .nav-bar-elements {
         @apply h-[72px] w-[300px] rounded-lg
+        text-secondary-75 stroke-secondary-75
         hover:bg-secondary-50
         hover:text-secondary-300 hover:stroke-secondary-300
         flex items-center
         hover:rounded-xl
         transition-all duration-300 ease-linear
         cursor-pointer;
+    }
+
+    .nav-bar-elements-clicked{
+        @apply h-[72px] w-[300px] rounded-lg
+        bg-secondary-50 text-secondary-300 stroke-secondary-300
+        fill-secondary-300
+        flex items-center;
     }
 
     .nav-bar-elements-logout {
@@ -22,5 +30,24 @@
         hover:rounded-xl
         transition-all duration-300 ease-linear
         cursor-pointer;
+    }
+
+    .table-card {
+        @apply  pl-[333px] pt-8;
+    }
+    .table-card-s {
+        @apply pt-[44px];
+    }
+    .card-l {
+        @apply  pl-[333px] pt-8;
+    }
+    .card-left {
+        @apply  pl-[333px] pt-8;
+    }
+    .card-right {
+        @apply  pr-[33px] pt-8;
+    }
+    .card-xl {
+        @apply  pl-[333px] pt-[28px];
     }
 }

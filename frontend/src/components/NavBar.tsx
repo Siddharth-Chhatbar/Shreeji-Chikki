@@ -5,6 +5,7 @@ import Inventory from '../svg/Inventory'
 import Orders from '../svg/Orders'
 import Settings from '../svg/Settings'
 import Logout from '../svg/Logout'
+import { NavLink } from 'react-router-dom'
 
 const NewNavBar = () => {
     return (
@@ -17,10 +18,25 @@ const NewNavBar = () => {
             </div>
 
             <div className='pt-16 pb-60'>
-                <Dashboard />
-                <Suppliers />
-                <Inventory />
-                <Orders />
+                <NavLink to={'/dashboard'}
+                    className={({ isActive }) => isActive ? 'nav-bar-elements-clicked' : 'nav-bar-elements'}>
+                    <Dashboard />
+                </NavLink>
+
+                <NavLink to={'/inventory'}
+                    className={({ isActive }) => isActive ? 'nav-bar-elements-clicked' : 'nav-bar-elements'}>
+                    <Inventory />
+                </NavLink>
+
+                <NavLink to={'/suppliers'}
+                    className={({ isActive }) => isActive ? 'nav-bar-elements-clicked' : 'nav-bar-elements'}>
+                    <Suppliers />
+                </NavLink>
+
+                <NavLink to={'/orders'}
+                    className={({ isActive }) => isActive ? 'nav-bar-elements-clicked' : 'nav-bar-elements'}>
+                    <Orders />
+                </NavLink>
             </div>
 
             <div className=' pb-12'>
