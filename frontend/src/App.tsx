@@ -15,7 +15,7 @@ import Orders from './pages/Orders';
 function App() {
   return (
     <Router>
-      <div className=' bg-neutral-300 h-full w-full'>
+      <div className=' bg-neutral-300 h-screen w-screen'>
 
         <NavBar />
         <Routes>
