@@ -15,7 +15,8 @@ import Orders from './pages/Orders';
 function App() {
   return (
     <Router>
-      <div className=' bg-neutral-300 h-screen w-screen'>
+      <div className=' bg-neutral-300 h-full w-full'>
+
         <NavBar />
         <Routes>
           <Route path="/dashboard" Component={Dashboard} />

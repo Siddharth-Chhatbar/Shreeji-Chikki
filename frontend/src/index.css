@@ -32,22 +32,66 @@
         cursor-pointer;
     }
 
-    .table-card {
-        @apply  pl-[333px] pt-8;
+    .card-padding{
+        @apply pl-[333px] pt-8;
     }
-    .table-card-s {
+    .card-s-padding{
         @apply pt-[44px];
     }
+    .card-padding-r{
+        @apply pr-[33px] pt-8;
+    }
+    .card-padding-s{
+        @apply pl-[44px] pt-8;
+    }
+    .card-padding-xl{
+        @apply pl-[333px] pt-[28px];
+    }
+
+    .table-card {
+        @apply h-[878px] w-[1341px]
+         bg-white rounded-2xl drop-shadow-2xl;
+    }
+    .table-card-s {
+        @apply h-[610px] w-[1341px]
+         bg-white rounded-2xl drop-shadow-2xl;
+    }
     .card-l {
-        @apply  pl-[333px] pt-8;
+        @apply h-[224px] w-[1341px]
+        bg-white rounded-2xl drop-shadow-2xl;
     }
-    .card-left {
-        @apply  pl-[333px] pt-8;
+    .card {
+        @apply h-[224px] w-[643.5px]
+        bg-white rounded-2xl drop-shadow-2xl;
     }
-    .card-right {
-        @apply  pr-[33px] pt-8;
-    }
+    
     .card-xl {
-        @apply  pl-[333px] pt-[28px];
+        @apply h-[300px] w-[1341px]
+        bg-white rounded-2xl drop-shadow-2xl;
     }
+
+    .button {
+        @apply w-36 h-14 shadow-2xl rounded-2xl
+        bg-neutral-300 text-secondary-300
+        hover:rounded-3xl hover:bg-secondary-50 hover:text-secondary-200
+        transition-all duration-300 ease-linear
+        cursor-pointer;
+    }
+
+    .add-button{
+        @apply w-36 h-14 shadow-2xl rounded-2xl
+        bg-secondary-300 text-white
+        hover:rounded-3xl hover:bg-secondary-50 hover:text-secondary-300
+        transition-all duration-300 ease-linear
+        cursor-pointer;
+    }
+
+    .button-text {
+        @apply pt-3 text-center text-lg font-medium;
+    }
+
+    .page-title{
+        @apply pt-6 pl-8 text-secondary-300 font-medium text-2xl;
+    }
+
 }
