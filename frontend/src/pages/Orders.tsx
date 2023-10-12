@@ -1,8 +1,9 @@
-import React from 'react'
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Label } from 'recharts';
-import AddButton from '../components/AddButton';
-import FilterButton from '../components/FilterButton';
-import DownloadButton from '../components/DownloadButton';
+import React, { useMemo } from 'react'
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer, Label, Tooltip } from 'recharts';
+import BasicTable from '../components/BasicTable';
+import oData from '../ORDER_MOCK_DATA.json'
+import { OrderProps } from '../types/types';
+import { ColumnDef } from '@tanstack/react-table';
 
 
 const data = [
@@ -12,6 +13,34 @@ const data = [
 // Make a custom lable to show percentage of deliveries
 
 const Orders = () => {
+
+    const orderData: OrderProps[] = useMemo(() => oData, [])
+    const columns: ColumnDef<any>[] = [
+        {
+            header: 'Client Name',
+            accessorKey: 'client_name'
+        },
+        {
+            header: 'Order',
+            accessorKey: 'order'
+        },
+        {
+            header: 'Order Value',
+            accessorKey: 'order_value'
+        },
+        {
+            header: 'Status',
+            accessorKey: 'status',
+            cell: (props) => {
+                const _status = props.getValue() as string
+                return (
+                    <p style={{ color: _status === "Delayed" ? "#B02A2A" : _status === "Out for Delivery" ? "#B0A32A" : "#35B02A" }}>
+                        {_status}
+                    </p>
+                );
+            }
+        }
+    ]
     return (
         <div>
             <div className=' card-padding'>
@@ -53,19 +82,20 @@ const Orders = () => {
                                 </div>
                             </div>
                             <div className="pt-1 px-10 col-span-3 ">
-                                <ResponsiveContainer>
-                                    <PieChart width={130} height={130}>
+                                <ResponsiveContainer width="99%" height="100%">
+                                    <PieChart>
                                         <Pie
                                             data={data}
                                             dataKey="num"
                                             innerRadius={45}
                                             outerRadius={60}
+                                            cornerRadius={10}
                                             startAngle={-180}
                                             className='text-2xl font-body font-semibold'
                                         >
                                             {/*<Label width={30} position="center">
-                  { `${totalTasks} ${tasksNameLabel}` }
-                </Label>*/}
+                                            { `${totalTasks} ${tasksNameLabel}` }
+                                            </Label>*/}
                                             <Label width={30} position="center" fill='#0C5B8C' >
                                                 74%
                                             </Label>
@@ -83,26 +113,8 @@ const Orders = () => {
                         </div>
                     </div>
                 </div>
-                <div className='card-s-padding'>
-                    <div className="table-card-s">
-                        <div className="flex flex-row">
-                            <div className=' page-title font-heading'>
-                                Orders
-                            </div>
-                            <div className=' pt-4 pl-[692px] flex flex-row'>
-                                <div>
-                                    <AddButton />
-                                </div>
-                                <div className=' pl-6'>
-                                    <FilterButton />
-                                </div>
-                                <div className=' pl-6 pr-8'>
-                                    <DownloadButton />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <div>
+                    <BasicTable data={orderData} columns={columns} tableName={"Orders"} rowNum={6} />
                 </div>
             </div>
         </div>

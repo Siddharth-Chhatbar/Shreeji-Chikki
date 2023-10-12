@@ -1,128 +1,53 @@
-import React from 'react'
-import AddButton from '../components/AddButton'
-import FilterButton from '../components/FilterButton'
-import DownloadButton from '../components/DownloadButton'
-import PreviousButton from '../components/PreviousButton'
-import NextButton from '../components/NextButton'
+import React, { useEffect, useState } from 'react'
+import { ColumnDef } from '@tanstack/react-table'
+import BasicTable from '../components/BasicTable'
+import { InventoryProps } from '../types/types'
 
 const Inventory = () => {
+
+    let [data, setData] = useState<InventoryProps[]>([])
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+    let getData = async () => {
+        let response = await fetch('/api/inventory/')
+        let data = await response.json()
+        setData(data)
+    }
+
+    const columns: ColumnDef<any>[] = [
+        {
+            header: 'Product',
+            accessorKey: 'product'
+        },
+        {
+            header: 'Price per Carton',
+            accessorKey: 'pricePerCarton'
+        },
+        {
+            header: 'Packets per Carton',
+            accessorKey: 'packetsPerCarton'
+        },
+        {
+            header: 'Quantity',
+            accessorKey: 'quantity',
+            cell: (props) => {
+                const qty = props.getValue() as number
+                return (
+                    <p style={{ color: qty === 0 ? "#B02A2A" : qty > 0 && qty <= 10 ? "#B0A32A" : "#35B02A" }}>
+                        {qty}
+                    </p>
+                );
+            }
+        }
+    ]
+
     return (
-        <div className="card-padding">
-            <div className=' table-card'>
-                <div className="flex flex-row">
-                    <div className=' page-title font-heading'>
-                        Inventory
-                    </div>
-                    <div className=' pt-4 pl-[692px] flex flex-row'>
-                        <div>
-                            <AddButton />
-                        </div>
-                        <div className=' pl-6'>
-                            <FilterButton />
-                        </div>
-                        <div className=' pl-6 pr-8'>
-                            <DownloadButton />
-                        </div>
-                    </div>
-                </div>
-                <div className=' px-8 pt-[42px]'>
-                    <table className=' w-full font-medium font-heading text-center'>
-                        <thead className=' h-12 text-black-100 border-b-2 border-black-100'>
-                            <tr>
-                                <td>Product</td>
-                                <td>Price per Carton</td>
-                                <td>Pieces per Carton</td>
-                                <td>Quantity</td>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                            <tr className=' h-12 border-b-2'>
-                                <td>ABC</td>
-                                <td>1080</td>
-                                <td>60</td>
-                                <td className=' text-success-400'>50</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div className=" flow-root pt-14 px-8">
-                    <p className=' float-left'>
-                        <PreviousButton />
-                    </p>
-                    <p className=' float-right'>
-                        <NextButton />
-                    </p>
-                </div>
-            </div>
+        <div>
+            <BasicTable data={data} columns={columns} tableName={"Inventory"} rowNum={12} />
         </div>
-
     )
 }
 
